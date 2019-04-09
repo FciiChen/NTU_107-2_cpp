@@ -2,7 +2,8 @@
 
 using namespace std;
 int main(){
-
+    cout << "There are four kinds of workers:\n";
+    cout << "1. manager ; 2. hourly workers ; 3. commission worker ; 4.pieceworkers\n\n";
     cout << "Plz input (1 ~ 4) to calculate the salary of workers: ";
 
     int choice;
