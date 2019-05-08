@@ -35,13 +35,11 @@ int  guess_suit (int suit_target){
 
 int  guess_value (int value_target){
     int guess_value;
-    cout << "Plz input 1~13 (A~k) to guess the number:";
-    cin >> guess_value;
+    int guess_counter = 0;
+    do{
+        cout << "Plz input 1~13 (A~k) to guess the number:";
+        cin >> guess_value;
 
-    int guess_counter = 1;
-
-    while(guess_value != value_target){
-        
         if (guess_value > value_target){
             cout << "No, the answer is smaller!\n";
         }
@@ -50,10 +48,8 @@ int  guess_value (int value_target){
         }
         
         guess_counter++;
+    }while(guess_value != value_target);
 
-        cout << "Plz input 1~13 (A~k) to guess the number:";
-        cin >> guess_value;
-    }
     cout << "Yes, that’s right!\n\n";
     return guess_counter;
 }
