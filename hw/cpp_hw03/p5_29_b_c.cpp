@@ -22,17 +22,19 @@ int prime_or_not(){
         }
     }
 
-    ofstream fcout( "prime_numberx.txt", ios::out );
+    ofstream fcout( "prime_number_b_c.txt", ios::out );
 
     if ( !fcout ){ // overloaded ! operator{
         cerr << "File could not be opened" << endl;
         exit( 1 );
     } // end if
 
+    int counter = 1;
+
     for (int number = 2 ; number<=10000 ; number++){
         if(primetable[number]){
-            cout << number << "\n";
-            fcout << number << endl;
+            cout << "No." << counter << ": " << number << "\n";
+            fcout << "No." << counter++ << ": " << number << endl;
         }
     }
 
