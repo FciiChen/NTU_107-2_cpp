@@ -68,14 +68,14 @@ void CAI(){
                     fcout << "Keep up the good work!\n\n";
                     break;
                 }
-                default:
+                default:{
                     break;
+                }
             }
             fcout.close();
             CAI();
         }
-        else
-        {
+        else{
             int choice = 1 + rand()%4;
             switch (choice){
                 case 1:{
@@ -98,8 +98,9 @@ void CAI(){
                     fcout << "NO. Keep trying.\n\n";
                     break;
                 }
-                default:
+                default:{
                     break;
+                }
             }
             fcout.close();
         }
