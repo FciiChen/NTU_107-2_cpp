@@ -3,7 +3,7 @@
 #include <fstream> // file stream  
 using namespace std;
 
-bool primetable[10000];
+bool primetable[10000];//declare a bool array
 
 int prime_or_not(){
     int bound = 10000;
@@ -42,7 +42,7 @@ int prime_or_not(){
 }
 
 int main(){
-    prime_or_not();
+    prime_or_not();//call the func
     cout << "All the prime_numbers are printed above and written in the file!\n" ;
     return 0;
 }

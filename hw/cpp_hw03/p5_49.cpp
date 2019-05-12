@@ -114,10 +114,10 @@ int main(){
     fcout.close();
     fcout.open( "CAI.txt", ios::out | ios::app); //write from the end of the file
 
-    int bankbalance = 1000;
+    int bankbalance = 1000;//as the question ask
     int wager;
     cout << "Plz enter the wager: ";
-    cin >> wager;
+    cin >> wager;//input the wager
     fcout << "The wager you entered is: " << wager << "\n";
 
     while(bankbalance < wager){
