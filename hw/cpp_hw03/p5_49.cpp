@@ -47,13 +47,12 @@ int rollDice(){// rolls dice, calculates and displays sum
     fcout << "Player rolled " << die1 << " + " << die2 << " = " << sum << endl;//output to the end of the file
     
     fcout.close();//close the file
+
     return sum; // end function rollDice
-    
 } // end function rollDice
 
 
 int craps_game(){
-    
    // enumeration with constants that represent the game status 
     enum Status { CONTINUE, WON, LOST }; // all caps in constants
 
@@ -61,8 +60,7 @@ int craps_game(){
     Status gameStatus; // can contain CONTINUE, WON or LOST
 
    // randomize random number generator using current time
-    srand( time( 0 ) );
-
+    srand(time( 0 ));
 
     int sumOfDice = rollDice(); // first roll of the dice
 
@@ -88,6 +86,7 @@ int craps_game(){
             fcout << "Not win or lose. Now roll dices again. And the rule change"<< endl;
             break; // optional at end of switch  
     } // end switch 
+    fcout.close();
 
     // while game is not complete
     while ( gameStatus == CONTINUE ){// not WON or LOST 
@@ -100,13 +99,11 @@ int craps_game(){
             gameStatus = LOST;
     } // end while 
 
-    fcout.close();
    // display won or lost message
     if ( gameStatus == WON )
         return 1;
     else
         return 0;
-
 } // end main
 
 int main(){
@@ -114,12 +111,13 @@ int main(){
     ofstream fcout;
     fcout.open( "wager.txt", ios::trunc); // clean the now existed file
     fcout.close();//ensure to close the file
-    fcout.open( "wager.txt", ios::out | ios::app); //write from the end of the file
-
+    
     int bankbalance = 1000;//as the question ask
     int wager;//declare the wager
     cout << "Plz enter the wager: ";
     cin >> wager;//input the wager
+
+    fcout.open( "wager.txt", ios::out | ios::app); //write from the end of the file
     fcout << "The wager you entered is: " << wager << "\n";//output to the end of the file
 
     while(bankbalance < wager){//if wager > bankbalance, we let the user input until he/she inputs right

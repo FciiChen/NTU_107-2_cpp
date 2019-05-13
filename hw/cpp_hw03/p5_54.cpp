@@ -27,7 +27,7 @@ int main () {
     ofstream fcout;
     fcout.open( "Template_which_bigger.txt", ios::trunc);//clean up the file
     fcout.close();
-    fcout.open( "Template_which_bigger.txt", ios::out | ios::app);//open the file
+    
 
     if ( !fcout ){ // overloaded ! operator{
         cerr << "File could not be opened" << endl;
@@ -37,6 +37,8 @@ int main () {
     cout << "The Maximum of two integers is: " << Maximun(int_a, int_b) << "\n";
     cout << "The Maximum of two floating_point numbers is: " << Maximun(double_a, double_b) << "\n";
     cout << "The Maximum of two chars is: " << Maximun(char_a, char_b) << "\n";
+
+    fcout.open( "Template_which_bigger.txt", ios::out | ios::app);//open the file
 
     fcout << "The Maximum of two integers " << int_a << " and " << int_b;//output to the end of the file
     fcout << " is: " << Maximun(int_a, int_b) << "\n";//output to the end of the file
