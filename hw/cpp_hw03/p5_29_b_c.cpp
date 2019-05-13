@@ -46,3 +46,4 @@ int main(){
     cout << "All the prime_numbers are printed above and written in the file!\n" ;
     return 0;
 }
+
