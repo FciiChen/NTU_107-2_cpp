@@ -51,6 +51,7 @@ int main()
         int minAccess = 9; // impossible access number 
         int accessNumber = minAccess;
         int minRow, minColumn; // row with minimum access number
+        int best_nextnext_access = 9;
 
         for (int movetype = 0; movetype <= 7; movetype++ ){ //test all the type of path
             int testRow = currentRow + vertical[ movetype ]; // test step : row
@@ -58,12 +59,48 @@ int main()
 
             if ( validMove( testRow, testColumn, board ) ){ // if that pos is vailed
 
-                if ( access[ testRow ][ testColumn ] < accessNumber ){ 
+                int temp = board[ testRow ][ testColumn ]; 
+                board[ testRow ][ testColumn ] = -1; 
+                /* we assume that the now pos is ocuppied 
+                so that when we want to see the next next step
+                we won't count the now-testing pos
+                at the same time we record it and resume it at the end of for
+                */
+
+                if ( access[ testRow ][ testColumn ] < accessNumber ){ //if the access is smaller
                     accessNumber = access[ testRow ][ testColumn ];
                     minRow = testRow; 
-                    minColumn = testColumn; 
+                    minColumn = testColumn;
+                    for (int movetype_nextnext = 0; movetype_nextnext <= 7; movetype_nextnext++ ){ //test all the type of path
+                        int testRow_nextnext = testRow + vertical[ movetype_nextnext ]; // test next next step : row
+                        int testColumn_nextnext = testColumn + horizontal[ movetype_nextnext ]; // test next next step : column
+                        
+                        if ( validMove( testRow_nextnext, testColumn_nextnext, board ) ){ // if that pos is vailed
+
+                            if ( access[ testRow_nextnext ][ testColumn_nextnext ] < best_nextnext_access ){  // if the next next step's access is smaller
+                                best_nextnext_access = access[ testRow_nextnext ][ testColumn_nextnext ];  // record it to wait for the compare from other equal-accessed pathes
+                            }
+                        }
+                    }
+
+                }
+                else if  ( access[ testRow ][ testColumn ] == accessNumber ){  // if the access is the ssame
+                    for (int movetype_nextnext = 0; movetype_nextnext <= 7; movetype_nextnext++ ){ //test all the type of path
+                        int testRow_nextnext = testRow + vertical[ movetype_nextnext ]; // test next next step : row
+                        int testColumn_nextnext = testColumn + horizontal[ movetype_nextnext ]; // test next next step : column
+                        
+                        if ( validMove( testRow_nextnext, testColumn_nextnext, board ) ){ // if that pos is vailed
+
+                            if ( access[ testRow_nextnext ][ testColumn_nextnext ] < best_nextnext_access ){  //to see wether it's smaller than the best next_next_access
+                                best_nextnext_access = access[ testRow_nextnext ][ testColumn_nextnext ];  //record the best_nextnext_access
+                                minRow = testRow; 
+                                minColumn = testColumn;
+                            }
+                        }
+                    }
                 }
 
+                board[ testRow ][ testColumn ] = temp;  // resume the board
                 access[ testRow ][ testColumn ]--; 
                 /* this is the key point. 
                 every time we test a path, it means there's another space 
